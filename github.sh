@@ -5,7 +5,7 @@
 read -p "GitHub username: " GITHUB_USER
 read -p "Repository name: " REPO_NAME
 # Use SSH URL
-REPO_URL="https://github.com/$GITHUB_USER/$REPO_NAME.git"
+REPO_URL="git@github.com:$GITHUB_USER/$REPO_NAME.git"
 read -p "Branch name (default: main): " BRANCH_NAME
 BRANCH_NAME=${BRANCH_NAME:-main}
 # ------------------------------------
