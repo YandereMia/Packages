@@ -124,23 +124,14 @@ void check() {
 }
 void ascii_art() {
     int pkg_count = check_pkg_nump();
-    printf("                  -`\n");
-    printf("                 .o+`\n");
-    printf("                `ooo/\n");
-    printf("               `+oooo:                   %s@%s",user , buff);
-    printf("              `+oooooo:                  ~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-    printf("              -+oooooo+:                 ~  SegLinux based on %s\n", OS);
-    printf("            `/:-:++oooo+:                ~  Linux %s\n", kernel);
-    printf("           `/++++/+++++++:               ~  %d (apx)\n", pkg_count);
-    printf("          `/++++++++++++++:\n");
-    printf("         `/+++ooooooooooooo/`\n");
-    printf("        ./ooosssso++osssssso+`\n");
-    printf("       .oossssso-````/ossssss+`\n");
-    printf("      -osssssso.      :ssssssso.\n");
-    printf("     :osssssss/        osssso+++.\n");
-    printf("    /ossssssss/        +ssssooo/-\n");
-    printf("  `/ossssso+/:-        -:/+osssso+-\n");
-    printf(" `+sso+:-`                 `.-/+oso:\n");
-    printf("`++:.                           `-/+/\n");
-    printf(".`                                 `/\n");
+    printf("        111111111111111                   %s@%s",user , buff);
+    printf("        111111111111111               ~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("        11--=0110011111                 ~  SegLinux based on %s\n", OS);
+    printf("        111110000111111                 ~  Linux %s\n", kernel);
+    printf("        111--=00000=>11                 ~  %d (apx)\n", pkg_count);
+    printf("        111110000111111\n");
+    printf("        11--=0110011111\n");
+    printf("        111111111111111\n");
 }
+    
+    
