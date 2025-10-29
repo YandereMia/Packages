@@ -124,8 +124,8 @@ void check() {
 }
 void ascii_art() {
     int pkg_count = check_pkg_nump();
-    printf("        111111111111111                   %s@%s",user , buff);
-    printf("        111111111111111               ~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("        111111111111111                 %s@%s",user , buff);
+    printf("        111111111111111                 ~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     printf("        11--=0110011111                 ~  SegLinux based on %s\n", OS);
     printf("        111110000111111                 ~  Linux %s\n", kernel);
     printf("        111--=00000=>11                 ~  %d (apx)\n", pkg_count);
