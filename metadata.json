@@ -1,0 +1,16 @@
+{
+  "packages": [
+    {
+      "name": "RMQOTS",
+      "version": "1.0.0",
+      "description": "Displays a random motivational quote",
+      "author": "Yanderemia"
+    },
+    {
+      "name": "fastfetch",
+      "version": "0.1",
+      "description": "Minimal system info tool",
+      "author": "Yanderemia"
+    }
+  ]
+}
