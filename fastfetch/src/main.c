@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+#include <dirent.h>
+#include <stdlib.h>
+
 void check();
 void ascii_art();
 
@@ -7,32 +10,9 @@ char buff[256];
 char OS[256];
 char kernel[256];
 char user[256];
-
 int main() {
     check();
     ascii_art();
-}
-
-void ascii_art() {
-    printf("                  -`\n");
-    printf("                 .o+`\n");
-    printf("                `ooo/\n");
-    printf("               `+oooo:                   %s@%s",user , buff);
-    printf("              `+oooooo:                  ~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-    printf("              -+oooooo+:                 ~  %s\n", OS);
-    printf("            `/:-:++oooo+:                ~  Linux %s\n", kernel);
-    printf("           `/++++/+++++++:               ~  1886 (pacman)\n");
-    printf("          `/++++++++++++++:              ~  bash 5.3.3\n");
-    printf("         `/+++ooooooooooooo/`            ~  konsole 25.8.2\n");
-    printf("        ./ooosssso++osssssso+`           ~  KWin (Wayland)\n");
-    printf("       .oossssso-````/ossssss+`\n");
-    printf("      -osssssso.      :ssssssso.\n");
-    printf("     :osssssss/        osssso+++.\n");
-    printf("    /ossssssss/        +ssssooo/-\n");
-    printf("  `/ossssso+/:-        -:/+osssso+-\n");
-    printf(" `+sso+:-`                 `.-/+oso:\n");
-    printf("`++:.                           `-/+/\n");
-    printf(".`                                 `/\n");
 }
 void check_hostname() {
     FILE *fptr = fopen("/etc/hostname", "r");  
@@ -99,6 +79,32 @@ void check_kernel() {
 
     pclose(fp);
 }
+int check_pkg_nump() {
+    char path[512];
+    snprintf(path, sizeof(path), "%s/.myshellos/packages", getenv("HOME"));
+
+    DIR *dir = opendir(path);
+    if (!dir) {
+        perror("opendir");
+        return 0;
+    }
+
+    struct dirent *entry;
+    int pkg_count = 0;
+
+    while ((entry = readdir(dir)) != NULL) {
+        if (strcmp(entry->d_name, ".") == 0 ||
+            strcmp(entry->d_name, "..") == 0 ||
+            strncmp(entry->d_name, "tmp.", 4) == 0)
+            continue;
+        pkg_count++;
+    }
+
+    closedir(dir);
+    return pkg_count;
+}
+
+
 
 void clean(char *s) {
     s[strcspn(s, "\n")] = '\0';
@@ -114,4 +120,27 @@ void check() {
     check_hostname();
     check_username();
     check_kernel();
+    check_pkg_nump();
+}
+void ascii_art() {
+    int pkg_count = check_pkg_nump();
+    printf("                  -`\n");
+    printf("                 .o+`\n");
+    printf("                `ooo/\n");
+    printf("               `+oooo:                   %s@%s",user , buff);
+    printf("              `+oooooo:                  ~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    printf("              -+oooooo+:                 ~  SegLinux based on %s\n", OS);
+    printf("            `/:-:++oooo+:                ~  Linux %s\n", kernel);
+    printf("           `/++++/+++++++:               ~  %d (apx)\n", pkg_count);
+    printf("          `/++++++++++++++:\n");
+    printf("         `/+++ooooooooooooo/`\n");
+    printf("        ./ooosssso++osssssso+`\n");
+    printf("       .oossssso-````/ossssss+`\n");
+    printf("      -osssssso.      :ssssssso.\n");
+    printf("     :osssssss/        osssso+++.\n");
+    printf("    /ossssssss/        +ssssooo/-\n");
+    printf("  `/ossssso+/:-        -:/+osssso+-\n");
+    printf(" `+sso+:-`                 `.-/+oso:\n");
+    printf("`++:.                           `-/+/\n");
+    printf(".`                                 `/\n");
 }
